@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "board": { "type": "string" },
+    "modules": { "type": "array", "items": { "type": "string" } },
+    "theme": { "type": "string" },
+    "resolution": { "type": "string" },
+    "language": { "type": "string" },
+    "debug": { "type": "boolean" },
+    "ota": { "type": "boolean" },
+    "timestamp": { "type": "string", "format": "date-time" }
+  },
+  "required": ["board", "modules"]
+}
