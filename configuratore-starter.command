@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Path assoluto alla cartella del tuo progetto (modifica se necessario)
-PROJECT_DIR="$HOME/Desktop/Tirocinio Teoresi - Andrea La Commara/configuratore-lite/configuratore-starter.command"
+PROJECT_DIR="$HOME/Desktop/Tirocinio Teoresi - Andrea La Commara/configuratore-lite"
 
 # Terminale 1: frontend (vite)
 osascript <<END
