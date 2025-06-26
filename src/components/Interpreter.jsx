@@ -6,7 +6,7 @@ export default function Interpreter({ config, token }) {
   const runInterpreter = async () => {
     setErrors(null);
     try {
-      const res = await fetch("/api/interpret", {
+      const res = await fetch("https://configuratore-lite.onrender.com/api/interpret", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
