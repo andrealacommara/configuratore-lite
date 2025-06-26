@@ -1,0 +1,7 @@
+MACHINE = "{{ config.board }}"
+DISTRO_FEATURES_append = " {{ 'wifi' if 'wifi' in config.modules else '' }} {{ 'bluetooth' if 'bluetooth' in config.modules else '' }}"
+
+EXTRA_IMAGE_FEATURES = "debug-tweaks {{ 'tools-debug' if config.debug else '' }}"
+
+IMAGE_INSTALL_append = " {{ config.modules | join(' ') }}"
+

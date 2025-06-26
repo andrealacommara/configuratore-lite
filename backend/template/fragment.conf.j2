@@ -1,0 +1,12 @@
+# fragment.conf generato dal configuratore
+{% if 'wifi' in config.modules %}
+DISTRO_FEATURES_append = " wifi"
+{% endif %}
+
+{% if 'bluetooth' in config.modules %}
+DISTRO_FEATURES_append = " bluetooth"
+{% endif %}
+
+{% if config.ota %}
+IMAGE_FEATURES += "ota-client"
+{% endif %}

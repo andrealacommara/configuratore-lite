@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Interpreter({ config }) {
+export default function Interpreter({ config, token }) {
   const [errors, setErrors] = useState(null);
 
   const runInterpreter = async () => {
@@ -8,9 +8,25 @@ export default function Interpreter({ config }) {
     try {
       const res = await fetch("/api/interpret", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify(config),
       });
+
+      if (!res.ok) {
+        const data = await res.json();
+        setErrors(data.errors || [{ message: "Errore sconosciuto" }]);
+        return;
+      }
+
+      const blob = await res.blob();
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "yocto-config.zip";
+      a.click();
+
       const data = await res.json();
       if (!res.ok) {
         setErrors(data.errors);

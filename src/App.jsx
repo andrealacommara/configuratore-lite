@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { availableModules } from "./data/modules";
 import ModuleSelector from "./components/ModuleSelector";
 import HardwareDetector from "./components/HardwareDetector";
 import ConfigPreview from "./components/ConfigPreview";
 import ExportButton from "./components/ExportButton";
 import Interpreter from "./components/Interpreter";
+import Login from "./components/Login";
 import "./index.css";
 
 export default function App() {
@@ -12,6 +13,12 @@ export default function App() {
   const [board, setBoard] = useState("");
   const [debug, setDebug] = useState(false);
   const [ota, setOta] = useState(false);
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("token");
+    if (saved) setToken(saved);
+  }, []);
 
   const config = {
     board,
@@ -24,8 +31,20 @@ export default function App() {
     timestamp: new Date().toISOString(),
   };
 
+  if (!token) return <Login setToken={setToken} />;
+
   return (
     <div className="bg-white rounded-xl shadow-md p-6 w-full max-w-xl">
+      <button
+        onClick={() => {
+          localStorage.removeItem("token");
+          setToken(null);
+        }}
+        className="absolute top-4 right-4 bg-red-500 hover:bg-red-600 text-white text-sm font-semibold py-1 px-3 rounded"
+      >
+        Logout
+      </button>
+
       <h1 className="text-2xl font-bold text-center mb-8 text-gray-900">
         Configuratore
       </h1>
@@ -65,7 +84,7 @@ export default function App() {
 
       <ConfigPreview config={config} />
       <ExportButton config={config} className="export" />
-      <Interpreter config={config} />
+      <Interpreter config={config} token={token} />
     </div>
   );
 }
