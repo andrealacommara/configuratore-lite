@@ -1,57 +1,21 @@
-# Configuratore Yocto
+# Configuratore Yocto - Frontend + Backend
 
-Un'applicazione full-stack per la generazione automatica di frammenti di configurazione Yocto, basata su interfaccia React e backend Python con Flask.
+Un'applicazione web che consente di configurare e generare automaticamente frammenti di configurazione per Yocto (config.bbappend, local.conf, ecc.), con supporto all'autenticazione e al download dei file in formato ZIP.
 
-## 🚀 Funzionalità principali
+## 🧱 Tecnologie utilizzate
 
-- Autenticazione con token JWT
-- Rilevamento automatico della board via WebUSB
-- Selezione moduli e opzioni (Debug, OTA)
-- Anteprima JSON in tempo reale
-- Generazione automatica di:
-  - `config.bbappend`
-  - `local.conf`
-  - `fragment.conf`
-- Download automatico in formato `.zip`
-- Interfaccia responsive e moderna
-- Dockerizzazione completa del backend
-- CI con GitHub Actions
+- **Frontend**: React + Vite + TailwindCSS
+- **Backend**: Flask + Jinja2 + JWT
+- **Autenticazione**: Login con token JWT
+- **CI/CD**: GitHub Pages (frontend) + Render (backend)
+- **Docker**: per l'esecuzione e la distribuzione del backend
+- **Altre**: CORS, gh-pages, jsonschema
 
-## 🧱 Struttura del progetto
+---
 
-```
-├── backend/               # Backend Flask + Jinja2
-│   ├── main.py
-│   ├── schema.json
-│   └── template/          # Template Jinja
-├── configuratore-lite/    # Frontend React + Vite + Tailwind
-│   ├── components/
-│   ├── data/
-│   └── index.css
-├── .github/workflows/     # CI GitHub Actions
-├── Dockerfile
-└── docker-compose.yml
-```
+## 🖥️ Come eseguire in locale
 
-## ▶️ Avvio locale
-
-### Prerequisiti
-
-- Node.js ≥ 18
-- Python ≥ 3.11
-- Docker
-- Docker Compose
-
-### 1. Avvio del backend
-
-```bash
-cd backend
-./start.sh
-```
-
-Il backend sarà disponibile su [http://localhost:5001](http://localhost:5001)
-
-### 2. Avvio del frontend
+### Frontend
 
 ```bash
 cd configuratore-lite
@@ -59,39 +23,83 @@ npm install
 npm run dev
 ```
 
-Il frontend sarà disponibile su [http://localhost:5173](http://localhost:5173)
+Durante lo sviluppo, le chiamate a `/api/...` vengono proxyate verso `localhost:5001`.
 
-⚠️ Assicurati che il proxy Vite sia configurato su `/api` → `http://localhost:5001`
+### Backend
 
-## 🔐 Credenziali di accesso (dev)
+```bash
+cd backend
+./start.sh
+```
 
-```txt
+Questo comando builda e avvia il backend Flask in un container Docker su porta `5001`.
+
+---
+
+## 🔐 Login
+
+Accedi con:
+
+```
 Username: admin
 Password: admin123
 ```
 
-## 🧪 CI GitHub Actions
+Viene restituito un **token JWT** che abilita la generazione dei file.
 
-Ogni `push` o `pull request` su `main` attiva un workflow che:
+---
 
-- Compila il backend via Docker
-- Compila il frontend React
+## 🚀 Deploy
 
-👉 Puoi seguire gli esiti nella tab **Actions** del repository.
+### Frontend
 
-## 📦 Build produzione (solo backend)
+Deploy automatico su **GitHub Pages** tramite script:
 
 ```bash
-cd backend
-docker build -t configuratore-backend .
-docker run -p 5001:5000 configuratore-backend
+npm run deploy
 ```
 
-## 📝 Autore
+Disponibile su:  
+📎 [https://andrealacommara.github.io/configuratore-lite/](https://andrealacommara.github.io/configuratore-lite/)
 
-**Andrea La Commara**  
-Progetto sviluppato durante il tirocinio presso **Teoresi S.p.A.**
+### Backend
 
-## 📜 Licenza
+Deploy su **Render** come servizio Docker-based:
 
-MIT
+📎 [https://configuratore-lite.onrender.com](https://configuratore-lite.onrender.com)
+
+---
+
+## 📁 Struttura del progetto
+
+```
+configuratore-lite/
+├── public/
+├── src/
+│   ├── components/
+│   ├── data/
+│   ├── api.js
+│   └── App.jsx
+├── backend/
+│   ├── main.py
+│   ├── template/
+│   └── requirements.txt
+├── Dockerfile
+└── vite.config.js
+```
+
+---
+
+## 🔄 Estensioni possibili
+
+- Generazione e build BitBake reali
+- Interfaccia di gestione utenti/admin
+- Esportazione su GitHub repo/branch
+- Logica multitenant
+
+---
+
+## 👤 Autore
+
+Andrea La Commara — Progetto di tirocinio presso **Teoresi S.p.A.**  
+Tutor aziendale: Daniele Napolitano
