@@ -2,3 +2,4 @@ flask
 jinja2
 jsonschema
 flask-jwt-extended
+flask
