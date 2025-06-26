@@ -21,25 +21,12 @@ export default function Interpreter({ config, token }) {
         return;
       }
 
+      // scarica direttamente lo zip
       const blob = await res.blob();
       const a = document.createElement("a");
       a.href = URL.createObjectURL(blob);
       a.download = "yocto-config.zip";
       a.click();
-
-      const data = await res.json();
-      if (!res.ok) {
-        setErrors(data.errors);
-        return;
-      }
-      // scarica ciascun file restituito
-      Object.entries(data).forEach(([name, content]) => {
-        const blob = new Blob([content], { type: "text/plain" });
-        const a = document.createElement("a");
-        a.href = URL.createObjectURL(blob);
-        a.download = name;
-        a.click();
-      });
     } catch (err) {
       setErrors([{ message: err.message }]);
     }
