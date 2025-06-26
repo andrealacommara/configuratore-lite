@@ -1,5 +1,4 @@
-import React from "react";
-export default function ExportButton({ config, className }) {
+export default function ExportButton({ config }) {
   const exportJSON = () => {
     if (!config.board) {
       alert("Seleziona prima una scheda.");
@@ -17,9 +16,15 @@ export default function ExportButton({ config, className }) {
     link.download = "configurazione.json";
     link.click();
   };
+
   return (
-    <button onClick={exportJSON} className={className}>
-      Esporta Configurazione
-    </button>
+    <div className="text-center mt-4">
+      <button
+        onClick={exportJSON}
+        className="bg-sky-600 hover:bg-sky-700 text-white text-sm font-semibold py-2 px-5 rounded-md shadow transition"
+      >
+        Esporta Configurazione
+      </button>
+    </div>
   );
 }

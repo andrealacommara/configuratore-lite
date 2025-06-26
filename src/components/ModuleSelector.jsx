@@ -1,5 +1,13 @@
 import React from "react";
 
+const moduliTradotti = {
+  bluetooth: "Bluetooth",
+  display: "Display",
+  navigation: "Navigazione",
+  wifi: "Wi-Fi",
+  touch: "Touchscreen",
+};
+
 export default function ModuleSelector({ modules, selected, setSelected }) {
   const toggle = (mod) =>
     setSelected((prev) =>
@@ -7,40 +15,27 @@ export default function ModuleSelector({ modules, selected, setSelected }) {
     );
 
   return (
-    <div>
-      <h2 style={{ textAlign: "center", marginBottom: "0.75rem" }}>
+    <div className="mb-6">
+      <h2 className="text-xl font-semibold text-center mb-3 text-gray-800">
         Moduli disponibili
       </h2>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-          gap: "0.5rem",
-          overflowX: "auto",
-          padding: "0.5rem 0",
-        }}
-      >
+      <div className="flex flex-wrap justify-center gap-2">
         {modules.map((mod) => {
           const isSel = selected.includes(mod);
+          const label =
+            moduliTradotti[mod] || mod.charAt(0).toUpperCase() + mod.slice(1);
           return (
             <button
               key={mod}
               onClick={() => toggle(mod)}
-              style={{
-                minWidth: "100px",
-                padding: "0.6rem",
-                borderRadius: "6px",
-                border: "1px solid",
-                borderColor: isSel ? "#28a745" : "#ccc",
-                backgroundColor: isSel ? "#d4edda" : "#fff",
-                color: isSel ? "#155724" : "#333",
-                cursor: "pointer",
-                transition: "background .2s, border-color .2s",
-                flexShrink: 0,
-              }}
+              className={`px-4 py-2 rounded-md border text-sm font-medium transition
+                ${
+                  isSel
+                    ? "bg-green-100 text-green-800 border-green-400"
+                    : "bg-white text-gray-800 border-gray-300"
+                }`}
             >
-              {mod}
+              {label}
             </button>
           );
         })}
