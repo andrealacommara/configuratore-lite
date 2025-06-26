@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import BASE_API_URL from "../api";
 
 export default function Login({ setToken }) {
   const [username, setUsername] = useState("");
@@ -8,7 +9,7 @@ export default function Login({ setToken }) {
   const handleLogin = async () => {
     setError(null);
     try {
-      const res = await fetch("https://configuratore-lite.onrender.com/api//login", {
+      const res = await fetch(`${BASE_API_URL}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
