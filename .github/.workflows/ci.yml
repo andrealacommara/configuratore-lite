@@ -1,0 +1,42 @@
+name: Build & Test Configuratore
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-backend:
+    name: Build Backend
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clona il repository
+        uses: actions/checkout@v3
+
+      - name: Build Docker backend
+        run: docker build -t configuratore-backend ./backend
+
+  build-frontend:
+    name: Build Frontend
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clona il repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Installa dipendenze
+        run: |
+          cd configuratore-lite
+          npm install
+
+      - name: Build frontend
+        run: |
+          cd configuratore-lite
+          npm run build
