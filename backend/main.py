@@ -7,8 +7,11 @@ import io
 import zipfile
 from flask import send_file # type: ignore
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required # type: ignore
+from flask_cors import CORS # type: ignore
+
 
 app = Flask(__name__)
+CORS(app)
 app.config["JWT_SECRET_KEY"] = "supersegreta"  # Puoi cambiarla con qualcosa di più robusto
 jwt = JWTManager(app)
 
