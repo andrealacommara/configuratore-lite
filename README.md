@@ -56,7 +56,7 @@ Il backend sarà disponibile su `http://localhost:5001`.
 ```bash
 cd backend
 docker build -t configuratore-backend .
-docker run -p 5001:5001 configuratore-backend
+docker run -p 5001:5000 configuratore-backend
 ```
 
 ---
