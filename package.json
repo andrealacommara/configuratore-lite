@@ -5,7 +5,6 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "start:server": "node server.js",
     "build": "vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
