@@ -6,7 +6,7 @@ Un’applicazione web per configurare e generare automaticamente template BitBak
 
 ## Tecnologie utilizzate
 
-- **Frontend**: React + Vite + TailwindCSS + Context API di React + WebUSB/WebSerial API  
+- **Frontend**: React + Vite + TailwindCSS + React Hooks (`use state`) e prop-drilling + WebUSB/WebSerial API  
 - **Backend**: Python 3.x + Flask + Jinja2 + flask-jwt-extended + Flask-CORS + jsonschema  
 - **Autenticazione**: token JWT (flask-jwt-extended)  
 - **Container**: Docker (backend)  
