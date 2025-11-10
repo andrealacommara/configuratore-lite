@@ -4,6 +4,12 @@ Un’applicazione web per configurare e generare automaticamente template BitBak
 
 ---
 
+## Credenziali per accedere al Mockup
+> - **username**: admin
+> - **psw**: admin123
+
+---
+
 ## Tecnologie utilizzate
 
 - **Frontend**: React + Vite + TailwindCSS + React Hooks (`use state`) e prop-drilling + WebUSB/WebSerial API  
