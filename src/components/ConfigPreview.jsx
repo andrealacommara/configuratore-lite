@@ -1,5 +1,7 @@
+// === MAIN IMPORTS ===
 import React from "react";
 
+// === COMPONENT ===
 export default function ConfigPreview({ config }) {
   return (
     <div className="mt-6">

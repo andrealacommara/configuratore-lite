@@ -1,6 +1,8 @@
+// === MAIN IMPORTS ===
 import React from "react";
 
-const moduliTradotti = {
+// === LABEL MAP ===
+const moduleLabels = {
   bluetooth: "Bluetooth",
   display: "Display",
   navigation: "Navigazione",
@@ -8,12 +10,15 @@ const moduliTradotti = {
   touch: "Touchscreen",
 };
 
+// === COMPONENT ===
 export default function ModuleSelector({ modules, selected, setSelected }) {
+  // === STATE HELPERS ===
   const toggle = (mod) =>
     setSelected((prev) =>
       prev.includes(mod) ? prev.filter((m) => m !== mod) : [...prev, mod]
     );
 
+  // === RENDER ===
   return (
     <div className="mb-6">
       <h2 className="text-xl font-semibold text-center mb-3 text-gray-800">
@@ -23,7 +28,7 @@ export default function ModuleSelector({ modules, selected, setSelected }) {
         {modules.map((mod) => {
           const isSel = selected.includes(mod);
           const label =
-            moduliTradotti[mod] || mod.charAt(0).toUpperCase() + mod.slice(1);
+            moduleLabels[mod] || mod.charAt(0).toUpperCase() + mod.slice(1);
           return (
             <button
               key={mod}

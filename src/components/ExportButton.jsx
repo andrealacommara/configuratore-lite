@@ -1,4 +1,6 @@
+// === COMPONENT ===
 export default function ExportButton({ config }) {
+  // === HELPERS ===
   const exportJSON = () => {
     if (!config.board) {
       alert("Seleziona prima una scheda.");
@@ -17,6 +19,7 @@ export default function ExportButton({ config }) {
     link.click();
   };
 
+  // === RENDER ===
   return (
     <div className="text-center mt-4">
       <button

@@ -1,3 +1,4 @@
+// === API BASE URL ===
 const BASE_API_URL =
   import.meta.env.MODE === "development"
     ? "/api"

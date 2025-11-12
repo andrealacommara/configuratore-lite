@@ -1,3 +1,4 @@
+// === MAIN IMPORTS ===
 import React, { useState, useEffect } from "react";
 import { availableModules } from "./data/modules";
 import ModuleSelector from "./components/ModuleSelector";
@@ -9,17 +10,20 @@ import Login from "./components/Login";
 import "./index.css";
 
 export default function App() {
+  // === LOCAL STATE ===
   const [selectedModules, setSelectedModules] = useState([]);
   const [board, setBoard] = useState("");
   const [debug, setDebug] = useState(false);
   const [ota, setOta] = useState(false);
   const [token, setToken] = useState(null);
 
+  // === PERSISTED SESSION ===
   useEffect(() => {
     const saved = localStorage.getItem("token");
     if (saved) setToken(saved);
   }, []);
 
+  // === CONFIG SNAPSHOT ===
   const config = {
     board,
     modules: selectedModules,
@@ -31,6 +35,7 @@ export default function App() {
     timestamp: new Date().toISOString(),
   };
 
+  // === AUTH GUARD ===
   if (!token) return <Login setToken={setToken} />;
 
   return (

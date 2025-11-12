@@ -1,3 +1,4 @@
+// === AVAILABLE MODULES ===
 export const availableModules = [
   'bluetooth',
   'display',

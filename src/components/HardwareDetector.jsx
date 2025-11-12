@@ -1,5 +1,7 @@
+// === MAIN IMPORTS ===
 import React, { useState } from "react";
 
+// === LOOKUP TABLES ===
 const boardMap = {
   "0x2341:0x0043": "arduino",
   "0x2e8a:0x0005": "raspberrypi-pico",
@@ -14,9 +16,11 @@ const boardOptions = [
   { label: "STM32 Discovery", value: "stm32" },
 ];
 
+// === COMPONENT ===
 export default function HardwareDetector({ board, setBoard }) {
   const [error, setError] = useState(null);
 
+  // === USB PROBING ===
   const detectUSB = async () => {
     setError(null);
     try {
@@ -33,6 +37,7 @@ export default function HardwareDetector({ board, setBoard }) {
     }
   };
 
+  // === RENDER ===
   return (
     <div className="mb-6">
       <div className="flex justify-between items-center gap-4 mb-2 flex-wrap sm:flex-nowrap">

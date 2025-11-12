@@ -1,9 +1,12 @@
+// === MAIN IMPORTS ===
 import React, { useState } from "react";
 import BASE_API_URL from "../api";
 
+// === COMPONENT ===
 export default function Interpreter({ config, token }) {
   const [errors, setErrors] = useState(null);
 
+  // === ACTIONS ===
   const runInterpreter = async () => {
     setErrors(null);
     try {
@@ -22,7 +25,7 @@ export default function Interpreter({ config, token }) {
         return;
       }
 
-      // scarica direttamente lo zip
+      // Stream the ZIP download immediately
       const blob = await res.blob();
       const a = document.createElement("a");
       a.href = URL.createObjectURL(blob);
@@ -33,6 +36,7 @@ export default function Interpreter({ config, token }) {
     }
   };
 
+  // === RENDER ===
   return (
     <div className="text-center mt-4">
       <button

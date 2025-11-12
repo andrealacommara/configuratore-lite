@@ -1,11 +1,14 @@
+// === MAIN IMPORTS ===
 import React, { useState } from "react";
 import BASE_API_URL from "../api";
 
+// === COMPONENT ===
 export default function Login({ setToken }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
+  // === ACTIONS ===
   const handleLogin = async () => {
     setError(null);
     try {
@@ -28,6 +31,7 @@ export default function Login({ setToken }) {
     }
   };
 
+  // === RENDER ===
   return (
     <div className="max-w-md mx-auto bg-white rounded-xl shadow p-6 mt-10 text-center">
       <h2 className="text-lg font-bold mb-4">Accedi</h2>
